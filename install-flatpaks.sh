@@ -1,7 +1,8 @@
 FLATPAKS=(
-  "spotify"
-  "discord"
-  "chrome"
+  "apps/com.discordapp.Discord"
+  "apps/md.obsidian.Obsidian"
+  "app/org.chromium.Chromium/x86_64/stable"
+  "apps/org.kde.kdenlive"
 )
 
 for pak in "${FLATPAKS[@]}"; do
