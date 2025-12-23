@@ -1,8 +1,8 @@
 FLATPAKS=(
-  "apps/com.discordapp.Discord"
-  "apps/md.obsidian.Obsidian"
-  "app/org.chromium.Chromium/x86_64/stable"
-  "apps/org.kde.kdenlive"
+  "com.discordapp.Discord"
+  "md.obsidian.Obsidian"
+  "org.chromium.Chromium/x86_64/stable"
+  "org.kde.kdenlive"
 )
 
 for pak in "${FLATPAKS[@]}"; do
