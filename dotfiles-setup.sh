@@ -6,7 +6,7 @@ REPO_NAME="dotfiles"
 
 
 is_stow_installed() {
-  pacman -Qi "stow" &> /dev/null
+  dpkg -s stow &> /dev/null
 }
 
 if ! is_stow_installed; then
@@ -28,7 +28,6 @@ if [ $? -eq 0 ]; then
   cd "$REPO_NAME"
   stow zshrc
   stow nvim
-  stow starship
 else
   echo "Failed to clone the repository."
   exit 1
