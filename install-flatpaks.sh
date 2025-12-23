@@ -5,10 +5,13 @@ FLATPAKS=(
   "org.kde.kdenlive"
 )
 
+
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
 for pak in "${FLATPAKS[@]}"; do
   if ! flatpak list | grep -i "$pak" &> /dev/null; then
     echo "Installing Flatpak: $pak"
-    flatpak install --noninteractive "$pak"
+    flatpak install -y "$pak"
   else
     echo "Flatpak already installed: $pak"
   fi
