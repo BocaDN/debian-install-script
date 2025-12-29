@@ -94,7 +94,7 @@ else
   echo "Install brew"
   NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   [ -d /home/linuxbrew/.linuxbrew ] && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
-  brew insall gcc zsh-syntax-highlighting zsh-autosuggestions
+  brew install gcc zsh-syntax-highlighting zsh-autosuggestions
 
   # Some programs just run better as flatpaks. Like discord/spotify
   echo "Installing flatpaks (like discord and spotify)"
