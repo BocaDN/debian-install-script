@@ -91,6 +91,10 @@ else
     fi
   done
   
+  echo "Install brew"
+  NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  brew insall gcc zsh-syntax-highlighting zsh-autosuggestions
+
   # Some programs just run better as flatpaks. Like discord/spotify
   echo "Installing flatpaks (like discord and spotify)"
   . install-flatpaks.sh
