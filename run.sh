@@ -45,6 +45,12 @@ else
   echo "Starting full system setup..."
 fi
 
+brew_setup() {
+  echo "Install brew"
+  NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  [ -d /home/linuxbrew/.linuxbrew ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  brew install gcc zsh-syntax-highlighting zsh-autosuggestions
+}
 # Update the system first
 echo "Updating system..."
 sudo apt update -y
@@ -57,6 +63,7 @@ if [[ "$DEV_ONLY" == true ]]; then
   
   echo "Installing development tools..."
   install_packages "${DEV_TOOLS[@]}"
+  brew_setup
 else
   # Install all packages
   echo "Installing system utilities..."
@@ -91,11 +98,8 @@ else
     fi
   done
   
-  echo "Install brew"
-  NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  [ -d /home/linuxbrew/.linuxbrew ] && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
-  brew install gcc zsh-syntax-highlighting zsh-autosuggestions
 
+  brew_setup
   # Some programs just run better as flatpaks. Like discord/spotify
   echo "Installing flatpaks (like discord and spotify)"
   . install-flatpaks.sh
