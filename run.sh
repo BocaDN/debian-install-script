@@ -15,10 +15,12 @@ EOF
 # Parse command line arguments
 DEV_ONLY=false
 ZSH_BREW_ONLY=false
+NVM_ONLY=false
 while [[ "$#" -gt 0 ]]; do
   case $1 in
     --dev-only) DEV_ONLY=true; shift ;;
     --zsh-brew-only) ZSH_BREW_ONLY=true; shift ;;
+    --nvm-only) NVM_ONLY=true; shift ;;
     *) echo "Unknown parameter: $1"; exit 1 ;;
   esac
 done
@@ -49,7 +51,6 @@ fi
 
 
 zsh_and_brew_setup() {
-  # install oh-my-zsh
   echo "Install brew"
    (
     set +e
@@ -60,9 +61,19 @@ zsh_and_brew_setup() {
   [ -d /home/linuxbrew/.linuxbrew ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
   brew install gcc zsh-syntax-highlighting zsh-autosuggestions
 
+  echo "Install oh-my-zsh"
   (
   set +e
   curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh | bash
+  )
+
+
+}
+
+nvm_setup() {
+  (
+  set +e
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
   )
 }
 
@@ -79,8 +90,11 @@ if [[ "$DEV_ONLY" == true ]]; then
   echo "Installing development tools..."
   install_packages "${DEV_TOOLS[@]}"
   zsh_and_brew_setup
+  nvm_setup
 elif [[ "$ZSH_BREW_ONLY" == true ]]; then
   zsh_and_brew_setup
+elif [[ "$NVM_ONLY" == true ]]; then
+  nvm_setup
 else
   # Install all packages
   echo "Installing system utilities..."
@@ -117,6 +131,7 @@ else
   
 
   zsh_and_brew_setup
+  nvm_setup
   # Some programs just run better as flatpaks. Like discord/spotify
   echo "Installing flatpaks (like discord and spotify)"
   . install-flatpaks.sh
