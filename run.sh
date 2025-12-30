@@ -45,6 +45,10 @@ source packages.conf
 
 if [[ "$DEV_ONLY" == true ]]; then
   echo "Starting development-only setup..."
+elif [[ "$ZSH_BREW_ONLY" == true ]]; then
+  echo "Starting brew and oh-my-zsh setup..."
+elif [[ "$NVM_ONLY" == true ]]; then
+  echo "Starting nvm setup..."
 else
   echo "Starting full system setup..."
 fi
