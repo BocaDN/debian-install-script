@@ -26,11 +26,11 @@ fi
 # Check if the clone was successful
 if [ $? -eq 0 ]; then
   cd "$REPO_NAME"
-  stow zshrc
-  stow nvim
-  stow i3
-  stow local
-  stow tmux
+  stow --adopt -t ~ zshrc
+  stow --adopt -t ~ nvim
+  stow --adopt -t ~ i3
+  stow --adopt -t ~ local
+  stow --adopt -t ~ tmux
 else
   echo "Failed to clone the repository."
   exit 1
