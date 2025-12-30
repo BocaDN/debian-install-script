@@ -75,6 +75,10 @@ nvm_setup() {
   set +e
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
   )
+  source ~/.zshrc
+  nvm install node
+  nvm use node
+
 }
 
 # Update the system first
