@@ -14,11 +14,11 @@ EOF
 
 # Parse command line arguments
 DEV_ONLY=false
-BREW_ONLY=false
+ZSH_BREW_ONLY=false
 while [[ "$#" -gt 0 ]]; do
   case $1 in
     --dev-only) DEV_ONLY=true; shift ;;
-    --brew-only) BREW_ONLY=true; shift ;;
+    --zsh-brew-only) ZSH_BREW_ONLY=true; shift ;;
     *) echo "Unknown parameter: $1"; exit 1 ;;
   esac
 done
@@ -70,7 +70,7 @@ if [[ "$DEV_ONLY" == true ]]; then
   echo "Installing development tools..."
   install_packages "${DEV_TOOLS[@]}"
   zsh_and_brew_setup
-elif [[ "$BREW_ONLY" == true ]]; then
+elif [[ "$ZSH_BREW_ONLY" == true ]]; then
   zsh_and_brew_setup
 else
   # Install all packages
