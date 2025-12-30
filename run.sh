@@ -79,8 +79,7 @@ nvm_setup() {
   fi
   export NVM_DIR="$HOME/.nvm"
   source "$NVM_DIR/nvm.sh"
-  nvm install node
-  nvm use node
+  nvm install --lts
 }
 
 # Update the system first
