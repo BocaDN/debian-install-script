@@ -51,7 +51,7 @@ fi
 zsh_and_brew_setup() {
   # install oh-my-zsh
   echo "Install brew"
-  NONINTERACTIVE=1 curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | bash
+  NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   [ -d /home/linuxbrew/.linuxbrew ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
   brew install gcc zsh-syntax-highlighting zsh-autosuggestions
   # (
