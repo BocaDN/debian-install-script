@@ -71,14 +71,15 @@ zsh_and_brew_setup() {
 }
 
 nvm_setup() {
-  (
-  set +e
-  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
-  )
+  if [ ! -d "$NVM_DIR" ]; then
+    (
+    set +e
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+    )
+  fi
   source ~/.zshrc
   nvm install node
   nvm use node
-
 }
 
 # Update the system first
