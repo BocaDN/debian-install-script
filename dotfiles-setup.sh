@@ -23,14 +23,15 @@ else
   git clone "$REPO_URL"
 fi
 
+
 # Check if the clone was successful
 if [ $? -eq 0 ]; then
   cd "$REPO_NAME"
-  stow --adopt -t ~ zshrc
-  stow --adopt -t ~ nvim
-  stow --adopt -t ~ i3
-  stow --adopt -t ~ local
-  stow --adopt -t ~ tmux
+  items=(zshrc nvim i3 local tmux profile)
+  
+  for item in "${items[@]}"; do
+    stow --adopt -t ~ "$item"
+  done
 else
   echo "Failed to clone the repository."
   exit 1
