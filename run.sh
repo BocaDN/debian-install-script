@@ -63,7 +63,8 @@ zsh_and_brew_setup() {
   )
   
   [ -d /home/linuxbrew/.linuxbrew ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-  brew install gcc zsh-syntax-highlighting zsh-autosuggestions font-dejavu-sans-mono-nerd-font
+  brew install gcc zsh-syntax-highlighting zsh-autosuggestions \
+  font-dejavu-sans-mono-nerd-font font-awesome-terminal-fonts
   fc-cache -fv
 
   echo "Install oh-my-zsh"
